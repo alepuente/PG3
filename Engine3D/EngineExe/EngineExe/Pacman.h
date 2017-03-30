@@ -25,5 +25,6 @@ private:
 	Node* cube8;
 
 	Text _text;
+	Text _polCount;
 };
 #endif

@@ -24,6 +24,12 @@ public:
 	DLLexport void draw(CustomVertex* apkVertices, _D3DPRIMITIVETYPE ePrimitive, unsigned int uiVertexCount);
 	DLLexport const Texture loadTexture(const std::string& fileName, int colorKey);
 
+	DLLexport int getTotalPol();
+	DLLexport void setTotalPol(int totalPol);
+
+	DLLexport int getActualPol();
+	DLLexport void setActualPol(int actualPol);
+
 	DLLexport Renderer(){};
 	DLLexport ~Renderer();
 
@@ -50,6 +56,9 @@ private:
 	VertexBuffer* v_bufferS;
 	IDirect3D9* d3d;
 	std::vector<Texture> textures;
+
+	int _totalPolCount;
+	int _actualPolCount;
 
 	VertexBuffer* _vertexBuffer;
 	IndexBuffer* _indexBuffer;

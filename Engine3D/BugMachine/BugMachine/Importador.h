@@ -8,8 +8,6 @@
 class Importador{
 public:
 	DLLexport Importador(Renderer& rkRenderer);
-	DLLexport bool importScene(std::string rkFilename, Node& orkSceneRoot);
-	
-	Renderer rendi;
+	DLLexport bool importScene(std::string rkFilename, Node& orkSceneRoot, Renderer& rendi);
 };
 #endif IMPORTADOR_H

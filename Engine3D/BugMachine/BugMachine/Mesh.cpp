@@ -137,6 +137,10 @@ void Mesh::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rk
 		rendi.setMatrix(MatrixType::World, _WordtransformationMatrix);
 		rendi.drawCurrentBuffers(primitive);
 	}
+	if (rkRenderer.getActualPol() < rkRenderer.getTotalPol())
+	{
+		rkRenderer.setActualPol(getPolCount() + rkRenderer.getActualPol());
+	}
 }
 
 void Mesh::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum, Text& _text){
@@ -147,7 +151,13 @@ void Mesh::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rk
 		rendi.setMatrix(MatrixType::World, _WordtransformationMatrix);
 		rendi.drawCurrentBuffers(primitive);
 
-		_text.setText(_text._text + "\n   +" + getName());
+		_text.setText(_text._text + "\n   +" + getName()+ " Polygons:" + std::to_string(getPolCount()));
+
+		if (rkRenderer.getActualPol() < rkRenderer.getTotalPol())
+		{
+			rkRenderer.setActualPol(getPolCount() + rkRenderer.getActualPol());
+		}	
+
 	}
 }
 

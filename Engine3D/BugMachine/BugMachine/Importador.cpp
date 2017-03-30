@@ -11,11 +11,9 @@ using namespace std;
 void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot,Renderer& rendi);
 
 Importador::Importador(Renderer& rkRenderer)
-:
-rendi(rkRenderer)
 {}
 
-bool Importador::importScene(std::string fileName, Node& orkSceneRoot){
+bool Importador::importScene(std::string fileName, Node& orkSceneRoot, Renderer& rendi){
 	Assimp::Importer Importer;
 	fileName = "Assets\\" + fileName;
 	const aiScene* pScene = Importer.ReadFile(fileName, aiProcess_Triangulate | aiProcess_ConvertToLeftHanded);
@@ -48,6 +46,9 @@ void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& 
 			verticesT[i].u = mesh->mTextureCoords[0][i].x;
 			verticesT[i].v = -mesh->mTextureCoords[0][i].y;
 		}
+
+		_mesh->setPolCount(mesh->mNumFaces);
+		rendi.setTotalPol(rendi.getTotalPol() + mesh->mNumFaces);
 
 		_mesh->setMeshData(verticesT, Primitive::TriangleList, mesh->mNumVertices, indices, mesh->mNumFaces * 3);
 

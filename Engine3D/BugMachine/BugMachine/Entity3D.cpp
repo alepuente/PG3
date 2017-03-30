@@ -35,6 +35,14 @@ void Entity3D::setName(std::string name){
 	_name = name;
 }
 //---------------------------------------------------------------------------
+int Entity3D::getPolCount() {
+	return _polCount;
+}
+//---------------------------------------------------------------------------
+void Entity3D::setPolCount(int polCount) {
+	_polCount = polCount;
+}
+//---------------------------------------------------------------------------
 Entity3D::~Entity3D(){
 	delete _WordtransformationMatrix;
 	_WordtransformationMatrix = NULL;

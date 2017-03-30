@@ -173,3 +173,18 @@ void Renderer::drawText(ID3DXFont* _Font, std::string& _text, RECT& _rect){
 	_Font->DrawTextA(NULL, _text.c_str(), -1, &_rect, DT_LEFT, D3DCOLOR_XRGB(255, 255, 255));
 }
 //---------------------------------------------------------------------------
+int Renderer::getTotalPol() {
+	return _totalPolCount;
+}
+//---------------------------------------------------------------------------
+void Renderer::setTotalPol(int totalPol){
+	_totalPolCount = totalPol;
+ }
+//---------------------------------------------------------------------------
+int Renderer::getActualPol() {
+	return _actualPolCount;
+}
+//---------------------------------------------------------------------------
+void Renderer::setActualPol(int actualPol) {
+	_actualPolCount = actualPol;
+ }
