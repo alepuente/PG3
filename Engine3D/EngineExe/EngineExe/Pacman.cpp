@@ -51,7 +51,7 @@ bool Pacman::init(Renderer& rendi) {
 	nodo1 = new Node();
 	nodo1->setName("Root");
 	importador = new Importador(rendi);
-	importador->importScene("sample_scene.dae", *nodo1, rendi);
+	importador->importScene("BSPTest.obj", *nodo1, rendi);
 	nodo1->setScale(1, 1, 1);
 	nodo1->setRotation(0, 0, 0);
 	nodo1->setPos(0, 0, 0);
