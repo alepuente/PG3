@@ -4,11 +4,13 @@
 #include "postprocess.h"
 #include <stack>
 #include <typeinfo>
+#include <vector>
+#include "Mat.h"
 
 using namespace std;
 
 #pragma comment (lib, "assimp.lib")
-void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot,Renderer& rendi);
+void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot,Renderer& rendi, std::vector<Mesh*>& walls);
 
 Importador::Importador(Renderer& rkRenderer)
 {}
@@ -18,19 +20,15 @@ bool Importador::importScene(std::string fileName, Node& orkSceneRoot, Renderer&
 	fileName = "Assets\\" + fileName;
 	const aiScene* pScene = Importer.ReadFile(fileName, aiProcess_Triangulate | aiProcess_ConvertToLeftHanded);
 
-	getChild(*pScene->mRootNode, *pScene, orkSceneRoot, rendi);
+	getChild(*pScene->mRootNode, *pScene, orkSceneRoot, rendi,_walls);
 	return true;
 }
 
-void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& rendi){
+void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& rendi, std::vector<Mesh*>& walls){
 	for (unsigned int i = 0; i < node.mNumMeshes; i++){
 		Mesh* _mesh = new Mesh(rendi);
 		_mesh->setName(node.mName.C_Str());
 
-		/*if (node.mName.C_Str() == "wall")
-		{
-			rendi.walls.push_back(_mesh);
-		}*/
 
 		const aiMesh* mesh = scene.mMeshes[node.mMeshes[i]];
 
@@ -50,6 +48,16 @@ void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& 
 			verticesT[i].z = mesh->mVertices[i].z;
 			verticesT[i].u = mesh->mTextureCoords[0][i].x;
 			verticesT[i].v = mesh->mTextureCoords[0][i].y;
+		}
+
+		//Crea un plano cuando importa una pared
+		string temp;
+		temp = node.mName.C_Str();
+		if (temp.find("wall") != std::string::npos)
+		{
+			_mesh->isWall = true;
+			_mesh->setPlane(mesh->mVertices[0].x, mesh->mVertices[0].y, mesh->mVertices[0].z, mesh->mVertices[1].x, mesh->mVertices[1].y, mesh->mVertices[1].z, mesh->mVertices[2].x, mesh->mVertices[2].y, mesh->mVertices[2].z);
+			walls.push_back(_mesh);
 		}
 
 		_mesh->setPolCount(mesh->mNumFaces);
@@ -127,7 +135,7 @@ void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& 
 
 					_node->setName(node.mName.C_Str());
 					orkSceneRoot.AddChild(_node);
-					getChild(*node.mChildren[i], scene, *_node, rendi);
+					getChild(*node.mChildren[i], scene, *_node, rendi,walls);
 				}
 		}
 }

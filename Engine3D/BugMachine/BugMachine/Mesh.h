@@ -23,6 +23,8 @@ public:
 	DLLexport void draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum, Text& _text);
 	DLLexport void setTextureId(Texture _texture);
 
+	DLLexport void setPlane(float _a1, float _a2, float _a3, float _b1, float _b2, float _b3, float _c1, float _c2, float _c3);
+
 	DLLexport void updateBV();
 	DLLexport void buildBV();
 
@@ -30,6 +32,9 @@ public:
 
 	IndexBuffer* indexB;
 	VertexBuffer* vertexB;
+	bool canDraw = true;
+	bool isWall = false;
+	Plane plane;
 
 
 private:

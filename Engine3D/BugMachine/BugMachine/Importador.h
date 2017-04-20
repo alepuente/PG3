@@ -9,5 +9,7 @@ class Importador{
 public:
 	DLLexport Importador(Renderer& rkRenderer);
 	DLLexport bool importScene(std::string rkFilename, Node& orkSceneRoot, Renderer& rendi);
+
+	std::vector<Mesh*> _walls;
 };
 #endif IMPORTADOR_H

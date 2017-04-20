@@ -7,5 +7,9 @@ typedef D3DXMATRIX* Matrix;
 struct D3DXPLANE;
 typedef D3DXPLANE* Plane;
 //---------------------------------------------------------------------------
+struct D3DXVECTOR3;
+typedef D3DXVECTOR3* Vector3;
+//---------------------------------------------------------------------------
+
 
 #endif 

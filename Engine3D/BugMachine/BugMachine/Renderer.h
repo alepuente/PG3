@@ -50,7 +50,6 @@ public:
 	void drawCurrentBuffers(Primitive ePrimitive);
 	float screenDepth;
 	Matrix projectionMatrix;
-	//std::vector<Entity3D*> walls;
 
 private:
 	VertexBuffer* v_buffer;

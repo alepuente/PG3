@@ -52,6 +52,7 @@ public:
 
 
 private:
+
 	float _posX, _posY, _posZ;
 	float _rotationX, _rotationY, _rotationZ;
 	float _scaleX, _scaleY, _scaleZ;

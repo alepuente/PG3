@@ -1,4 +1,3 @@
-﻿  Importador.cpp
-c:\users\822\desktop\pg3\engine3d\bugmachine\bugmachine\importador.cpp(80): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+﻿  Mesh.cpp
   BugMachine.vcxproj -> C:\Users\822\Desktop\PG3\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.dll
   BugMachine.vcxproj -> C:\Users\822\Desktop\PG3\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.pdb (Full PDB)

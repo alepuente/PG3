@@ -13,7 +13,8 @@ Mesh::Mesh(Renderer& rkRenderer)
 indexB(NULL),
 vertexB(NULL),
 _vertices(NULL),
-rendi(rkRenderer)
+rendi(rkRenderer),
+plane(new D3DXPLANE)
 {}
 using namespace std;
 
@@ -47,6 +48,11 @@ void Mesh::updateBV(){
 	BV.width = BV.ActualxMax - BV.ActualxMin;
 	BV.height = BV.ActualyMax - BV.ActualyMin;
 	BV.depth = BV.ActualzMax - BV.ActualzMin;
+
+	/*if (isWall)
+	{
+
+	}*/
 
 	delete wordRotation;
 	delete wordScale;
@@ -131,7 +137,7 @@ void Mesh::setMeshData(const CustomVertexZ* pakVertices, Primitive ePrimitive,
 }
 
 void Mesh::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum){
-	if (eParentResult != AllOutside)
+	if (eParentResult != AllOutside && canDraw)
 	{
 		rendi.setCurrentTexture(_texture);
 		rendi.setMatrix(MatrixType::World, _WordtransformationMatrix);
@@ -145,7 +151,7 @@ void Mesh::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rk
 
 void Mesh::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum, Text& _text){
 
-	if (eParentResult != AllOutside)
+	if (eParentResult != AllOutside && canDraw)
 	{
 		rendi.setCurrentTexture(_texture);
 		rendi.setMatrix(MatrixType::World, _WordtransformationMatrix);
@@ -163,6 +169,27 @@ void Mesh::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rk
 
 void Mesh::setTextureId(Texture texturrah){
 	_texture = texturrah;
+}
+
+void Mesh::setPlane(float _a1, float _a2, float _a3, float _b1, float _b2, float _b3, float _c1, float _c2, float _c3)
+{
+	//Setteo el plano que va a tener
+	D3DXVECTOR3 _a;
+	D3DXVECTOR3 _b;
+	D3DXVECTOR3 _c;
+	_a.x = _a1;
+	_a.x = _a2;
+	_a.x = _a3;
+
+	_b.x = _b2;
+	_b.x = _b3;
+	_b.x = _b1;
+
+	_c.x = _c1;
+	_c.x = _c2;
+	_c.x = _c3;
+
+	D3DXPlaneFromPoints(plane, &_a, &_b, &_c);	
 }
 
 Mesh::~Mesh(){
