@@ -20,6 +20,14 @@ D3DPRIMITIVETYPE primitiveTypes[Primitive::PrimitiveCount] = {
 	D3DPT_LINESTRIP,
 	D3DPT_TRIANGLEFAN };
 //---------------------------------------------------------------------------
+/*void Renderer::showWalls(bool show) {
+	std::vector<RenderMesh>::iterator iter;
+	for (iter = _walls.begin; iter != _walls.end; iter++)
+	{
+		(*iter)->
+	}
+}*/
+//---------------------------------------------------------------------------
 bool Renderer::init(HWND hWnd)
 {
 	d3d = Direct3DCreate9(D3D_SDK_VERSION);

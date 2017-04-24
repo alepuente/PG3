@@ -53,7 +53,7 @@ void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& 
 		//Crea un plano cuando importa una pared
 		string temp;
 		temp = node.mName.C_Str();
-		if (temp.find("wall") != std::string::npos)
+		if (temp.find_first_of("wall") == 0)
 		{
 			_mesh->isWall = true;
 			_mesh->setPlane(mesh->mVertices[0].x, mesh->mVertices[0].y, mesh->mVertices[0].z, mesh->mVertices[1].x, mesh->mVertices[1].y, mesh->mVertices[1].z, mesh->mVertices[2].x, mesh->mVertices[2].y, mesh->mVertices[2].z);

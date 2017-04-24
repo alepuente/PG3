@@ -29,6 +29,7 @@ public:
 
 	DLLexport int getActualPol();
 	DLLexport void setActualPol(int actualPol);
+	//DLLexport void showWalls(bool show);
 
 	DLLexport Renderer(){};
 	DLLexport ~Renderer();
@@ -51,11 +52,14 @@ public:
 	float screenDepth;
 	Matrix projectionMatrix;
 
+	//std::vector<RenderMesh> _walls;
+
 private:
 	VertexBuffer* v_buffer;
 	VertexBuffer* v_bufferS;
 	IDirect3D9* d3d;
 	std::vector<Texture> textures;
+
 
 	int _totalPolCount;
 	int _actualPolCount;

@@ -1,3 +1,8 @@
-﻿  Mesh.cpp
-  BugMachine.vcxproj -> C:\Users\822\Desktop\PG3\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.dll
-  BugMachine.vcxproj -> C:\Users\822\Desktop\PG3\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.pdb (Full PDB)
+﻿  Importador.cpp
+c:\users\ale3p\desktop\pg3\engine3d\bugmachine\bugmachine\importador.cpp(89): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Game.cpp
+  Engine.cpp
+  Camera.cpp
+  Generating Code...
+     Creating library C:\Users\ale3p\Desktop\PG3\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.lib and object C:\Users\ale3p\Desktop\PG3\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.exp
+  BugMachine.vcxproj -> C:\Users\ale3p\Desktop\PG3\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.dll

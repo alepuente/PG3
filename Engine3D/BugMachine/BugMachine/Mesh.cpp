@@ -49,11 +49,6 @@ void Mesh::updateBV(){
 	BV.height = BV.ActualyMax - BV.ActualyMin;
 	BV.depth = BV.ActualzMax - BV.ActualzMin;
 
-	/*if (isWall)
-	{
-
-	}*/
-
 	delete wordRotation;
 	delete wordScale;
 	delete wordTranslation;

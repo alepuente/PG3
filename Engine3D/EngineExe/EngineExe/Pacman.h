@@ -26,5 +26,6 @@ private:
 
 	Text _text;
 	Text _polCount;
+
 };
 #endif
