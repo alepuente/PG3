@@ -1,8 +1,18 @@
-﻿  Importador.cpp
-c:\users\ale3p\desktop\pg3\engine3d\bugmachine\bugmachine\importador.cpp(89): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+﻿  pg2_vertexbuffer.cpp
+  pg2_indexbuffer.cpp
+  Text.cpp
+  Renderer.cpp
+  Node.cpp
+  Mesh.cpp
+  Importador.cpp
+c:\users\822\desktop\pg3\engine3d\bugmachine\bugmachine\importador.cpp(90): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
   Game.cpp
+  Frustum.cpp
+  Entity3D.cpp
   Engine.cpp
   Camera.cpp
-  Generating Code...
-     Creating library C:\Users\ale3p\Desktop\PG3\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.lib and object C:\Users\ale3p\Desktop\PG3\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.exp
-  BugMachine.vcxproj -> C:\Users\ale3p\Desktop\PG3\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.dll
+  BSPPlane.cpp
+  Generando código...
+     Creando biblioteca C:\Users\822\Desktop\PG3\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.lib y objeto C:\Users\822\Desktop\PG3\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.exp
+  BugMachine.vcxproj -> C:\Users\822\Desktop\PG3\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.dll
+  BugMachine.vcxproj -> C:\Users\822\Desktop\PG3\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.pdb (Full PDB)

@@ -20,11 +20,11 @@ D3DPRIMITIVETYPE primitiveTypes[Primitive::PrimitiveCount] = {
 	D3DPT_LINESTRIP,
 	D3DPT_TRIANGLEFAN };
 //---------------------------------------------------------------------------
-/*void Renderer::showWalls(bool show) {
-	std::vector<RenderMesh>::iterator iter;
+/*void Renderer::showWalls() {
+	std::vector<Mesh*>::iterator iter;
 	for (iter = _walls.begin; iter != _walls.end; iter++)
 	{
-		(*iter)->
+		(*iter)->canDraw = !(*iter)->canDraw;
 	}
 }*/
 //---------------------------------------------------------------------------

@@ -16,6 +16,7 @@ typedef ID3DXFont* Font;
 
 class IndexBuffer;
 class VertexBuffer;
+class BSPPlane;
 
 #define DLLexport __declspec(dllexport)
 class Renderer{
@@ -29,7 +30,7 @@ public:
 
 	DLLexport int getActualPol();
 	DLLexport void setActualPol(int actualPol);
-	//DLLexport void showWalls(bool show);
+	//DLLexport void showWalls();
 
 	DLLexport Renderer(){};
 	DLLexport ~Renderer();
@@ -52,7 +53,7 @@ public:
 	float screenDepth;
 	Matrix projectionMatrix;
 
-	//std::vector<RenderMesh> _walls;
+	std::vector<BSPPlane*> _walls;
 
 private:
 	VertexBuffer* v_buffer;

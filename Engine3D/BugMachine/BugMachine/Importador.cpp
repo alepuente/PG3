@@ -10,7 +10,7 @@
 using namespace std;
 
 #pragma comment (lib, "assimp.lib")
-void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot,Renderer& rendi, std::vector<Mesh*>& walls);
+void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot,Renderer& rendi);
 
 Importador::Importador(Renderer& rkRenderer)
 {}
@@ -20,13 +20,15 @@ bool Importador::importScene(std::string fileName, Node& orkSceneRoot, Renderer&
 	fileName = "Assets\\" + fileName;
 	const aiScene* pScene = Importer.ReadFile(fileName, aiProcess_Triangulate | aiProcess_ConvertToLeftHanded);
 
-	getChild(*pScene->mRootNode, *pScene, orkSceneRoot, rendi,_walls);
+	getChild(*pScene->mRootNode, *pScene, orkSceneRoot, rendi);
 	return true;
 }
 
-void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& rendi, std::vector<Mesh*>& walls){
+void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& rendi){
 	for (unsigned int i = 0; i < node.mNumMeshes; i++){
 		Mesh* _mesh = new Mesh(rendi);
+		BSPPlane* _bsp = new BSPPlane(rendi);
+
 		_mesh->setName(node.mName.C_Str());
 
 
@@ -55,9 +57,9 @@ void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& 
 		temp = node.mName.C_Str();
 		if (temp.find_first_of("wall") == 0)
 		{
-			_mesh->isWall = true;
-			_mesh->setPlane(mesh->mVertices[0].x, mesh->mVertices[0].y, mesh->mVertices[0].z, mesh->mVertices[1].x, mesh->mVertices[1].y, mesh->mVertices[1].z, mesh->mVertices[2].x, mesh->mVertices[2].y, mesh->mVertices[2].z);
-			walls.push_back(_mesh);
+			_bsp->planeMesh = _mesh;
+			_bsp->setPlane(mesh->mVertices[0].x, mesh->mVertices[0].y, mesh->mVertices[0].z, mesh->mVertices[1].x, mesh->mVertices[1].y, mesh->mVertices[1].z, mesh->mVertices[2].x, mesh->mVertices[2].y, mesh->mVertices[2].z);
+			rendi._walls.push_back(_bsp);
 		}
 
 		_mesh->setPolCount(mesh->mNumFaces);
@@ -135,7 +137,7 @@ void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& 
 
 					_node->setName(node.mName.C_Str());
 					orkSceneRoot.AddChild(_node);
-					getChild(*node.mChildren[i], scene, *_node, rendi,walls);
+					getChild(*node.mChildren[i], scene, *_node, rendi);
 				}
 		}
 }

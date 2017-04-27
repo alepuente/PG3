@@ -1,9 +1,17 @@
 #include "Node.h"
 #include <d3dx9.h>
+#include "BSPPlane.h"
 
 Node::Node(){}
-
 using namespace std;
+
+void Node::checkBSP(BSPPlane* node, Camera* mainCamera) {
+	node->doBSP(*this, mainCamera);
+	std::vector<Entity3D*>::iterator it;
+	for (it = _childs.begin(); it != _childs.end(); it++) {
+		node->doBSP(*(*it), mainCamera);
+	}
+}
 
 void Node::getChild(string name, Entity3D& child){
 	std::vector<Entity3D*>::iterator it;

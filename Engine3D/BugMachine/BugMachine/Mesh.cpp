@@ -9,23 +9,22 @@
 #pragma comment (lib, "d3dx9.lib")
 
 Mesh::Mesh(Renderer& rkRenderer)
-:
-indexB(NULL),
-vertexB(NULL),
-_vertices(NULL),
-rendi(rkRenderer),
-plane(new D3DXPLANE)
+	:
+	indexB(NULL),
+	vertexB(NULL),
+	_vertices(NULL),
+	rendi(rkRenderer)
 {}
 using namespace std;
 
-void Mesh::getChild(std::string name, Entity3D& child){
+void Mesh::getChild(std::string name, Entity3D& child) {
 	if (name == getName())
 	{
 		child = *this;
 	}
 }
 
-void Mesh::updateBV(){
+void Mesh::updateBV() {
 
 	D3DXVECTOR3* wordScale = new D3DXVECTOR3();
 	D3DXQUATERNION* wordRotation = new D3DXQUATERNION();
@@ -54,7 +53,7 @@ void Mesh::updateBV(){
 	delete wordTranslation;
 }
 
-void Mesh::buildBV(){
+void Mesh::buildBV() {
 
 	////AABB Values
 	float xMin = 0, xMax = 0;
@@ -131,7 +130,7 @@ void Mesh::setMeshData(const CustomVertexZ* pakVertices, Primitive ePrimitive,
 	primitive = ePrimitive;
 }
 
-void Mesh::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum){
+void Mesh::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum) {
 	if (eParentResult != AllOutside && canDraw)
 	{
 		rendi.setCurrentTexture(_texture);
@@ -144,7 +143,7 @@ void Mesh::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rk
 	}
 }
 
-void Mesh::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum, Text& _text){
+void Mesh::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum, Text& _text) {
 
 	if (eParentResult != AllOutside && canDraw)
 	{
@@ -152,45 +151,30 @@ void Mesh::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rk
 		rendi.setMatrix(MatrixType::World, _WordtransformationMatrix);
 		rendi.drawCurrentBuffers(primitive);
 
-		_text.setText(_text._text + "\n   +" + getName()+ " Polygons:" + std::to_string(getPolCount()));
+		_text.setText(_text._text + "\n   +" + getName() + " Polygons:" + std::to_string(getPolCount()));
 
 		if (rkRenderer.getActualPol() < rkRenderer.getTotalPol())
 		{
 			rkRenderer.setActualPol(getPolCount() + rkRenderer.getActualPol());
-		}	
+		}
 
 	}
 }
 
-void Mesh::setTextureId(Texture texturrah){
+void Mesh::setTextureId(Texture texturrah) {
 	_texture = texturrah;
 }
 
-void Mesh::setPlane(float _a1, float _a2, float _a3, float _b1, float _b2, float _b3, float _c1, float _c2, float _c3)
-{
-	//Setteo el plano que va a tener
-	D3DXVECTOR3 _a;
-	D3DXVECTOR3 _b;
-	D3DXVECTOR3 _c;
-	_a.x = _a1;
-	_a.x = _a2;
-	_a.x = _a3;
 
-	_b.x = _b2;
-	_b.x = _b3;
-	_b.x = _b1;
 
-	_c.x = _c1;
-	_c.x = _c2;
-	_c.x = _c3;
-
-	D3DXPlaneFromPoints(plane, &_a, &_b, &_c);	
-}
-
-Mesh::~Mesh(){
+Mesh::~Mesh() {
 	delete indexB;
 	delete vertexB;
 
 	indexB = NULL;
 	vertexB = NULL;
+}
+
+void Mesh::checkBSP(BSPPlane* node, Camera* mainCamera) {
+	node->doBSP(*this, mainCamera);	
 }

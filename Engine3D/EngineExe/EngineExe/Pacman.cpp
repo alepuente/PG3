@@ -52,14 +52,15 @@ bool Pacman::init(Renderer& rendi) {
 	nodo1->setName("Root");
 	importador = new Importador(rendi);
 	importador->importScene("BSPTest.obj", *nodo1, rendi);
+	
 	nodo1->setScale(1, 1, 1);
 	nodo1->setRotation(0, 0, 0);
 	nodo1->setPos(0, 0, 0);
 
-	teapot = new Mesh(rendi);
-	nodo1->getChild("Plano", *teapot);
+	/*teapot = new Mesh(rendi);
+	nodo1->getChild("Plano", *teapot);*/
 
-	cube = new Node();
+	/*cube = new Node();
 	importador = new Importador(rendi);
 	importador->importScene("cube.obj", *cube, rendi);
 	cube->setScale(cubeScale, cubeScale, cubeScale);
@@ -98,7 +99,7 @@ bool Pacman::init(Renderer& rendi) {
 	cube8 = new Node();
 	importador = new Importador(rendi);
 	importador->importScene("cube.obj", *cube8, rendi);
-	cube8->setScale(cubeScale, cubeScale, cubeScale);
+	cube8->setScale(cubeScale, cubeScale, cubeScale);*/
 
 	frustum = new Frustum(rendi);
 	cam->setFrustum(frustum);
@@ -130,6 +131,8 @@ void Pacman::frame(Renderer& renderer, Input& input, Timer& timer) {
 	if (input.keyDown(input.KEY_G)) nodo1->setPos(nodo1->posX() - PosModif, nodo1->posY(), nodo1->posZ());
 	if (input.keyDown(input.KEY_J)) nodo1->setPos(nodo1->posX() + PosModif, nodo1->posY(), nodo1->posZ());
 
+	//if (input.keyDown(input.KEY_T))renderer.showWalls();
+
 
 
 	//nodo1->setRotation(nodo1->rotationX() + 0.001, nodo1->rotationY(), nodo1->rotationZ());
@@ -140,9 +143,14 @@ void Pacman::frame(Renderer& renderer, Input& input, Timer& timer) {
 	cam->updateFrustum();
 
 	nodo1->updateBV();
+
+	for (int i = 0; i < renderer._walls.size() ; i++)
+	{
+		nodo1->checkBSP(renderer._walls[i], cam);
+	}
 	nodo1->draw(renderer, cam->frustum->CheckCollision(nodo1->BV), *frustum, _text);
 
-	cube->setPos(nodo1->BV.ActualxMax, nodo1->BV.ActualyMax, nodo1->BV.ActualzMax);
+	/*cube->setPos(nodo1->BV.ActualxMax, nodo1->BV.ActualyMax, nodo1->BV.ActualzMax);
 	cube2->setPos(nodo1->BV.ActualxMin, nodo1->BV.ActualyMin, nodo1->BV.ActualzMax);
 	cube3->setPos(nodo1->BV.ActualxMin, nodo1->BV.ActualyMax, nodo1->BV.ActualzMax);
 	cube4->setPos(nodo1->BV.ActualxMax, nodo1->BV.ActualyMin, nodo1->BV.ActualzMax);
@@ -167,7 +175,7 @@ void Pacman::frame(Renderer& renderer, Input& input, Timer& timer) {
 	cube5->draw(renderer, cam->frustum->CheckCollision(cube5->BV), *frustum);
 	cube6->draw(renderer, cam->frustum->CheckCollision(cube6->BV), *frustum);
 	cube7->draw(renderer, cam->frustum->CheckCollision(cube7->BV), *frustum);
-	cube8->draw(renderer, cam->frustum->CheckCollision(cube8->BV), *frustum);
+	cube8->draw(renderer, cam->frustum->CheckCollision(cube8->BV), *frustum);*/
 
 
 	_text._text += " \n \n Total Scene Pol: " + std::to_string(renderer.getTotalPol()) + "\n Actual Scene Pol:" + std::to_string(renderer.getActualPol());

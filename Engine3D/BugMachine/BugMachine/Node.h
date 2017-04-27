@@ -3,7 +3,7 @@
 
 #include "Entity3D.h"
 #include <vector>
-#include "Mesh.h"
+
 
 class Node : public Entity3D{
 public:
@@ -15,6 +15,7 @@ public:
 	DLLexport void removeChild(Entity3D* pkChild);
 	DLLexport void updateBV();
 	DLLexport void getChild(std::string name, Entity3D& child);
+	DLLexport void checkBSP(BSPPlane* node, Camera* mainCamera);
 
 
 

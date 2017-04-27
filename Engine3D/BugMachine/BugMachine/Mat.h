@@ -10,7 +10,5 @@ typedef D3DXPLANE* Plane;
 struct D3DXVECTOR3;
 typedef D3DXVECTOR3* Vector3;
 //---------------------------------------------------------------------------
-//class Mesh;
-//typedef Mesh* RenderMesh;
 
 #endif 

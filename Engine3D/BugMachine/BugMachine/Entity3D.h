@@ -4,9 +4,12 @@
 #include "pg1_timer.h"
 #include "Frustum.h"
 #include "Text.h"
+#include "BSPPlane.h"
 
 class Node;
 class Mesh;
+class Camera;
+class BSPPlane;
 
 #define DLLexport __declspec(dllexport)
 
@@ -33,6 +36,7 @@ public:
 	DLLexport virtual void draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum, Text& _text) = 0;
 
 	DLLexport virtual void getChild(std::string name, Entity3D& child) = 0;
+	DLLexport virtual void checkBSP(BSPPlane* node, Camera* mainCamera) = 0;
 
 	DLLexport void setParent(Node& parent);
 	DLLexport virtual void updateWordTransformation();
@@ -46,9 +50,10 @@ public:
 	Node* _parent;
 	AABB BV;
 
-public:
 	DLLexport const AABB& getAABB() const;
 	DLLexport virtual void updateBV() = 0;
+
+	bool canDraw = true;
 
 
 private:
