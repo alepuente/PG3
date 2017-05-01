@@ -23,9 +23,9 @@ void BSPPlane::setPlane(float _a1, float _a2, float _a3, float _b1, float _b2, f
 	_a.y = _a2 + planeMesh->posY();
 	_a.z = _a3 + planeMesh->posZ();
 
-	_b.x = _b2 + planeMesh->posX();
-	_b.y = _b3 + planeMesh->posY();
-	_b.z = _b1 + planeMesh->posZ();
+	_b.x = _b1 + planeMesh->posX();
+	_b.y = _b2 + planeMesh->posY();
+	_b.z = _b3 + planeMesh->posZ();
 
 	_c.x = _c1 + planeMesh->posX();
 	_c.y = _c2 + planeMesh->posY();
@@ -53,41 +53,43 @@ void BSPPlane::doBSP(Entity3D& node, Camera* mainCamera) {
 		D3DXVECTOR3(node.BV.ActualxMin, node.BV.ActualyMax, node.BV.ActualzMin)
 	};
 
-	if (D3DXPlaneDotCoord(plane, &cameraPos) >= 0.0f)
+	if (D3DXPlaneDotCoord(plane, &cameraPos) > 0.0f)
 	{
 		positive = true;
+	}
+	else
+	{
+		positive = false;
 	}
 
 
 	for (int i = 0; i < 8; i++)
 	{
 
-		if (D3DXPlaneDotCoord(plane, &aabbVertices[i]) >= 0.0f)
+		if (D3DXPlaneDotCoord(plane, &aabbVertices[i]) > 0.0f)
 		{
 			if (positive)
 			{
-				resultCont++;
+				totalResult++;
+				break;
 			}
 		}
-
-		if (resultCont == 6)
+		else
 		{
-			totalResult++;
+			if (!positive)
+			{
+				totalResult++;
+				break;
+			}
 		}
-
-		resultCont = 0;
 	}
 
-	if (totalResult == 8)
+	if (totalResult == 1)
 	{
 		node.canDraw = true;
 	}
-	else if (totalResult == 0)
+	else 
 	{
 		node.canDraw = false;
-	}
-	else
-	{
-		node.canDraw = true;
 	}
 }

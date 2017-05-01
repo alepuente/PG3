@@ -52,16 +52,6 @@ void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& 
 			verticesT[i].v = mesh->mTextureCoords[0][i].y;
 		}
 
-		//Crea un plano cuando importa una pared
-		string temp;
-		temp = node.mName.C_Str();
-		if (temp.find_first_of("wall") == 0)
-		{
-			_bsp->planeMesh = _mesh;
-			_bsp->setPlane(mesh->mVertices[0].x, mesh->mVertices[0].y, mesh->mVertices[0].z, mesh->mVertices[1].x, mesh->mVertices[1].y, mesh->mVertices[1].z, mesh->mVertices[2].x, mesh->mVertices[2].y, mesh->mVertices[2].z);
-			rendi._walls.push_back(_bsp);
-		}
-
 		_mesh->setPolCount(mesh->mNumFaces);
 		rendi.setTotalPol(rendi.getTotalPol() + mesh->mNumFaces);
 
@@ -90,6 +80,16 @@ void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& 
 		_mesh->setRotation(std::atan2(t0, t1), std::asin(t2), std::atan2(t3, t4));
 		//_mesh->setRotation(rotation.x, rotation.y, rotation.z);
 		_mesh->updateBV();
+
+		//Crea un plano cuando importa una pared
+		string temp;
+		temp = node.mName.C_Str();
+		if (temp.find_first_of("wall") == 0)
+		{
+			_bsp->planeMesh = _mesh;
+			_bsp->setPlane(mesh->mVertices[0].x, mesh->mVertices[0].y, mesh->mVertices[0].z, mesh->mVertices[1].x, mesh->mVertices[1].y, mesh->mVertices[1].z, mesh->mVertices[2].x, mesh->mVertices[2].y, mesh->mVertices[2].z);
+			rendi._walls.push_back(_bsp);
+		}
 
 		aiString path;
 		if (scene.mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0, &path) == AI_SUCCESS){

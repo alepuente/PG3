@@ -64,7 +64,7 @@ void Node::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rk
 
 	updateWordTransformation();
 	std::vector<Entity3D*>::iterator it;
-	if (eParentResult != AllOutside)
+	if (eParentResult != AllOutside && canDraw)
 	{
 		if (eParentResult == AllInside)
 		{
@@ -89,7 +89,7 @@ void Node::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rk
 	updateWordTransformation();
 
 	std::vector<Entity3D*>::iterator it;
-	if (eParentResult != AllOutside)
+	if (eParentResult != AllOutside && canDraw)
 	{
 		if (eParentResult == AllInside)
 		{
