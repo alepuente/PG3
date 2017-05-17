@@ -8,6 +8,10 @@
 #include <d3dx9.h>
 #pragma comment (lib, "d3dx9.lib")
 
+void Mesh::setDraw(Entity3D& node, bool state) {
+	canDraw = state;
+}
+
 Mesh::Mesh(Renderer& rkRenderer)
 	:
 	indexB(NULL),

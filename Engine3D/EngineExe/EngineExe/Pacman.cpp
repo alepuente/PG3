@@ -149,6 +149,7 @@ void Pacman::frame(Renderer& renderer, Input& input, Timer& timer) {
 		nodo1->checkBSP(renderer._walls[i], cam);
 	}
 	nodo1->draw(renderer, cam->frustum->CheckCollision(nodo1->BV), *frustum, _text);
+	nodo1->setDraw(*nodo1, true);
 
 	/*cube->setPos(nodo1->BV.ActualxMax, nodo1->BV.ActualyMax, nodo1->BV.ActualzMax);
 	cube2->setPos(nodo1->BV.ActualxMin, nodo1->BV.ActualyMin, nodo1->BV.ActualzMax);

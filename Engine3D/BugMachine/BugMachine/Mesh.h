@@ -28,6 +28,7 @@ public:
 
 	DLLexport void getChild(std::string name, Entity3D& child);
 	DLLexport void checkBSP(BSPPlane* node, Camera* mainCamera);
+	DLLexport void Mesh::setDraw(Entity3D& node, bool state);
 
 	IndexBuffer* indexB;
 	VertexBuffer* vertexB;

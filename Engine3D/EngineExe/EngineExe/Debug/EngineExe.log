@@ -1,3 +1,8 @@
-﻿  Pacman.cpp
-c:\users\ale3p\desktop\pg3\engine3d\engineexe\engineexe\pacman.cpp(147): warning C4018: '<': signed/unsigned mismatch
-  EngineExe.vcxproj -> C:\Users\ale3p\Desktop\PG3\Engine3D\BugMachine\..\BugMachine\bin\Win32\Debug\EngineExe.exe
+﻿  EngineTest.cpp
+  Generando código...
+  Compilando...
+  Pacman.cpp
+c:\users\822\desktop\pg3\engine3d\engineexe\engineexe\pacman.cpp(147): warning C4018: '<': no coinciden signed/unsigned
+  Generando código...
+  EngineExe.vcxproj -> C:\Users\822\Desktop\PG3\Engine3D\BugMachine\..\BugMachine\bin\Win32\Debug\EngineExe.exe
+  EngineExe.vcxproj -> C:\Users\822\Desktop\PG3\Engine3D\BugMachine\..\BugMachine\bin\Win32\Debug\EngineExe.pdb (Full PDB)

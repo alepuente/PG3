@@ -4,6 +4,13 @@
 
 Node::Node(){}
 using namespace std;
+void Node::setDraw(Entity3D& node, bool state){
+	node.canDraw = state;
+	std::vector<Entity3D*>::iterator it;
+	for (it = _childs.begin(); it != _childs.end(); it++) {
+		node.setDraw(*(*it), state);
+	}
+}
 
 void Node::checkBSP(BSPPlane* node, Camera* mainCamera) {
 	node->doBSP(*this, mainCamera);
@@ -107,7 +114,7 @@ void Node::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rk
 					(*it)->draw(rkRenderer, rkFrustum.CheckCollision(BV), rkFrustum, _text);
 				}
 			}
-		}
+		}		
 	}
 }
 

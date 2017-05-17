@@ -38,6 +38,8 @@ public:
 	DLLexport virtual void getChild(std::string name, Entity3D& child) = 0;
 	DLLexport virtual void checkBSP(BSPPlane* node, Camera* mainCamera) = 0;
 
+	DLLexport virtual void setDraw(Entity3D& node,bool state) = 0;
+
 	DLLexport void setParent(Node& parent);
 	DLLexport virtual void updateWordTransformation();
 
@@ -54,6 +56,7 @@ public:
 	DLLexport virtual void updateBV() = 0;
 
 	bool canDraw = true;
+	bool isBSPPlane = false;
 
 
 private:

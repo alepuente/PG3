@@ -35,6 +35,8 @@ void BSPPlane::setPlane(float _a1, float _a2, float _a3, float _b1, float _b2, f
 }
 
 void BSPPlane::doBSP(Entity3D& node, Camera* mainCamera) {
+	if (node.canDraw && !node.isBSPPlane)
+	{
 	int resultCont = 0;
 	int totalResult = 0;
 	bool positive;
@@ -91,5 +93,6 @@ void BSPPlane::doBSP(Entity3D& node, Camera* mainCamera) {
 	else 
 	{
 		node.canDraw = false;
+	}
 	}
 }

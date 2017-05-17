@@ -16,6 +16,7 @@ public:
 	DLLexport void updateBV();
 	DLLexport void getChild(std::string name, Entity3D& child);
 	DLLexport void checkBSP(BSPPlane* node, Camera* mainCamera);
+	DLLexport void Node::setDraw(Entity3D& node, bool state);
 
 
 
